@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<!-- saved from url=(0067)http://www.gotokeep.com/login?next=http%3A%2F%2Fwww.gotokeep.com%2F -->
+<html lang="zh-Hans" style="font-size: 10px;">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="description"
+          content="「Keep」是一款具有社交属性的健身工具类产品。用户可以利用碎片化的时间，随时随地选择适合自己的健身课程进行真人同步训练。健身计划针对不同人群、各种器械和阶段健身目标组合编排，适用于最广泛的健身场景。训练完成后还可将成果分享到社区和社交网络，结识同样热爱运动的朋友，让健身不再是孤独的坚持。">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="cleartype" content="on">
+    <link rel="dns-prefetch" href="http://staticweb.keepcdn.com/">
+    <link rel="dns-prefetch" href="http://static1.keepcdn.com/">
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <script src="/layui/layui.js"></script>
+    <script src="/system/Js/jquery.js"></script>
+    <script>/*
+    # 不做适配时，html fontsize默认设置，便于css使用rem
+*/
+    !function () {
+        var designFontSize = 10 || 10;
+        document.documentElement.style.fontSize = designFontSize + "px";
+    }();</script>
+    <link rel="icon" type="image/png" href="http://www.gotokeep.com/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="http://www.gotokeep.com/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="http://www.gotokeep.com/favicon-16x16.png" sizes="16x16">
+    <link rel="stylesheet" href="/other/keep_icon-645549d368.css">
+    <link rel="stylesheet" href="/other/common-f1afea741f.css">
+    <link rel="stylesheet" href="/other/login-9d90ff3309.css">
+    <title>登录/注册 - Keep</title></head>
+<body data-keepversion="">
+<div class="keep-header">
+    <nav class="nav-wrapper-pc-wider">
+        <div class="head-left"><a href="http://localhost:8080"><img src="/other/logo-16fc21eba7.png"></a></div>
+        <div class="head-right">
+            <div class="nav-pc"><a href="javascript:;" class="keep-login-trigger"><i class="keep-icon-user"></i><span>登录/注册</span></a>
+            </div>
+        </div>
+    </nav>
+    <nav class="nav-wrapper-phone">
+        <div class="phone-head"><a href="http://www.gotokeep.com/" id="header-home-link"><img
+                src="/other/phonelogo-b3150ff135.png" class="img"></a>
+            <div id="header-tab-expand" class="act-tab keep-icon-menu"></div>
+            <div id="header-tab-close" class="act-tab keep-icon-close"></div>
+        </div>
+        <div class="phone-tabs-wrap">
+            <div class="login">
+                <div class="user-avatar keep-login-trigger"><i class="keep-icon-user"></i></div>
+                <p class="keep-login-trigger">登录/注册</p></div>
+            <div><a href="http://www.gotokeep.com/" class="link">首页</a><a href="http://www.gotokeep.com/explore"
+                                                                          class="link">发现精选</a><a
+                    href="http://www.gotokeep.com/training" class="link">课程内容</a></div>
+        </div>
+    </nav>
+</div>
+<div class="content-wrapper">
+    <div class="login-wrapper"><h2><span class="login-btn active">登录</span><span class="register-btn">注册</span></h2>
+        <div class="login-panel panel active">
+            <form method="post" id="loginForm">
+                <div class="input-wrapper">
+                    <div class="error error-username"></div>
+                    <i class="keep-icon-user"></i><input type="text" placeholder="用户名" name="username" id="username1"
+                                                         class="phone-input username"></div>
+                <div class="input-wrapper"><i class="keep-icon-password"></i><input type="password" placeholder="密码"
+                                                                                    name="password" id="password1"
+                                                                                    class="phone-input password"></div>
+                <input type="button" value="登录" class="submit" id="loginSubmit"></form>
+        </div>
+        <div class="register-panel panel">
+            <form method="post">
+                <div class="input-wrapper">
+                    <div class="error error-username"></div>
+                    <i class="keep-icon-user"></i><input type="text" placeholder="用户名" name="username" id="username2"
+                                                         class="phone-input username"></div>
+                <div class="input-wrapper">
+                    <div class="error error-password"></div>
+                    <i class="keep-icon-password"></i><input type="password" placeholder="密码" name="password" id="password2"
+                                                             class="phone-input password"></div>
+
+                <input type="button" value="注册" class="submit" id="submitform"></form>
+        </div>
+    </div>
+</div>
+<div class="login-error-wrapper">
+    <div class="login-mask"></div>
+    <div class="login-err-popup"><i class="keep-icon-close"></i>
+        <div class="logo-wrapper">
+            <div class="logoicon"></div>
+        </div>
+        <div class="info"></div>
+        <div class="confirm">确认</div>
+    </div>
+</div>
+<script>
+    window.onload=function () {
+        var loginSubmit = document.getElementById("loginSubmit");
+        loginSubmit.addEventListener("click",loginSubmits);
+        var submitform = document.getElementById("submitform");
+        submitform.addEventListener("click",register);
+        $("div[class='login-wrapper'] span").click(function(){
+            //alert("click");
+            // $(this).next().removeClass("active");
+            // $(this).addClass("active");
+            var content =  $(this).html();
+            var ch = $(this).parent().parent().children();
+            //alert(ch.length);
+           // alert(content);
+            if(content == "登录"){
+                $(this).next().removeClass("active");
+                $(this).addClass("active");
+                $(ch[2]).removeClass("active");
+                $(ch[1]).addClass("active");
+            }else
+            {
+                $(this).prev().removeClass("active");
+                $(this).addClass("active");
+                $(ch[1]).removeClass("active");
+                $(ch[2]).addClass("active");
+            }
+        });
+
+    }
+
+
+    function register(){
+        document.getElementById("submitform").removeEventListener("click",register);
+        layui.use(['layer'], function(){
+            var layer = layui.layer
+            layer.msg("正在注册，请稍候");
+            var username = document.getElementById("username2").value;
+            var password = document.getElementById("password2").value;
+            var xhr = createXHR();
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState == 4){
+                    if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304){
+
+                            var text = xhr.responseText;
+                            if(text == "success" || text == "login")
+                            {
+
+                                layer.msg('注册成功,正在跳转请稍候');
+                                setTimeout(function () {
+                                    window.location.href="/system/index.html?userName="+username;
+                                },2000);
+
+                            }else
+                            {
+                                layer.msg('注册失败,请稍候再试');
+                                var loginSubmit = document.getElementById("submitform");
+                                loginSubmit.addEventListener("click",register);
+                                document.getElementById("username2").value="";
+                                document.getElementById("password2").value="";
+                            }
+                        }else
+                        {
+                            layer.msg('注册失败,请稍候再试');
+                        }
+
+
+                }
+            };
+            xhr.open("post","http://localhost:8080/login/register",true);
+            var jsondata = "{";
+            if(username != null && username != "")
+            {
+                jsondata += "\"username\":"+"\""+username+"\""+",";
+            }
+            if(password != null && password != "")
+            {
+                jsondata += "\"password\":"+"\""+password+"\""+",";
+            }
+            if(sex != null && sex != "")
+            {
+                jsondata += "\"sex\":"+"\""+sex+"\""+",";
+            }
+            jsondata = jsondata.substr(0,jsondata.length-1);
+            jsondata += "}";
+            console.log(jsondata);
+            // jsondata = JSON.parse(jsondata);
+            console.log(jsondata);
+            xhr.send(jsondata);
+        });
+    }
+
+    function loginSubmits(){
+        document.getElementById("loginSubmit").removeEventListener("click",loginSubmits);
+        var username = document.getElementById("username1").value;
+        var password = document.getElementById("password1").value;
+        sendData(username,password,null,"http://localhost:8080/login/login");
+    }
+    function sendData(username,password,sex,url){
+        var xhr = createXHR();
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4){
+                layui.use(['layer'], function(){
+                    var layer = layui.layer
+                    console.log(JSON.stringify(xhr))
+                    if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304){
+
+                        var text = xhr.responseText;
+                        if(text == "success" || text == "login")
+                        {
+
+                            layer.msg('登陆成功,正在跳转请稍候');
+                            setTimeout(function () {
+                                window.location.href="/system/index.html?userName="+username;
+                            },2000);
+
+                        }else
+                        {
+                            layer.msg('登陆失败,用户名或密码错误，请重新登陆');
+                            var loginSubmit = document.getElementById("loginSubmit");
+                            loginSubmit.addEventListener("click",loginSubmits);
+                            document.getElementById("password1").value="";
+                        }
+                    }else
+                    {
+                        layer.msg('登陆失败,用户名或密码错误，请重新登陆');
+                    }
+                });
+
+            }
+        };
+        xhr.open("post",url,true);
+        var jsondata = "{";
+        if(username != null && username != "")
+        {
+            jsondata += "\"username\":"+"\""+username+"\""+",";
+        }
+        if(password != null && password != "")
+        {
+            jsondata += "\"password\":"+"\""+password+"\""+",";
+        }
+        if(sex != null && sex != "")
+        {
+            jsondata += "\"sex\":"+"\""+sex+"\""+",";
+        }
+        jsondata = jsondata.substr(0,jsondata.length-1);
+        jsondata += "}";
+        console.log(jsondata);
+       // jsondata = JSON.parse(jsondata);
+        console.log(jsondata);
+        xhr.send(jsondata);
+    }
+    function createXHR() {
+        if(typeof XMLHttpRequest != "undefined") {
+            return new XMLHttpRequest();
+        } else if(typeof ActiveXObject != "undefined") {
+            return new ActiveXObject("Microsoft.XMLHTTP");
+        } else {}
+    }
+</script>
+</body>
+</html>
